@@ -16,6 +16,13 @@ def tanh_back(z):
     return (1 - tanh(z) * tanh(z))
 
 
+def relu(z):
+    return (z >= 0 ) * z
+
+def relu_back(z):
+    return (z>=0)
+
+
 def linear(z):
     return z
 
@@ -41,6 +48,9 @@ def get(identifier):
     elif identifier == 'tanh':
         return tanh
 
+    elif identifier == 'relu':
+        return relu
+
     elif identifier == 'linear':
         return linear
     else:
@@ -63,6 +73,9 @@ def get_back(identifier):
 
     elif identifier == 'tanh':
         return tanh_back
+
+    elif identifier == 'relu':
+        return relu_back
 
     elif identifier == 'linear':
         return linear_back
