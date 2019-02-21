@@ -26,12 +26,21 @@ def mean_abs_error(pred , Y):
 
     return loss,d_pred
 
-
 def binary_cross_entropy(pred , Y):
 
     first_term = Y * np.log(pred)
     second_term = (1 - Y) * np.log(1 - pred)
     loss = -1  * np.sum( first_term + second_term ,axis =0)
     d_pred = (pred - Y) / (pred * (1-pred))
+
+    return loss,d_pred
+
+def mean_binary_cross_entropy(pred , Y):
+    N = pred.shape[0]
+
+    first_term = Y * np.log(pred)
+    second_term = (1 - Y) * np.log(1 - pred)
+    loss = -1  * np.mean( first_term + second_term ,axis =0)
+    d_pred = (pred - Y) / (float(N) *pred * (1-pred))
 
     return loss,d_pred
