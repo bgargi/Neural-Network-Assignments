@@ -1,6 +1,7 @@
 import numpy as np
 import Activations
 import Loss
+import Metrics
 
 class PerceptronLayer:
 
@@ -110,7 +111,7 @@ class MultiLayerPerceptron:
             Y_train,
             X_test,
             Y_test,
-            accuracy_fn,
+            metric='accuracy_binary',
             loss_function_string = 'mean_square_error',
             epochs=200,
             record_at = 100,
@@ -119,8 +120,7 @@ class MultiLayerPerceptron:
             learning_rate_decay = False):
 
         loss_fn = Loss.get(loss_function_string)
-        # --------TO DO ---------
-        # make accuracies also available
+        metric_fn = Metrics.get(metric)
         train_loss_his = []
         train_acc_his = []
         test_loss_his = []
@@ -142,11 +142,11 @@ class MultiLayerPerceptron:
 
             if i % record_at == 0:
                 train_loss,_ = loss_fn(prediction,Y_train)
-                train_acc = accuracy_fn(self ,X_train,Y_train)
+                train_acc = metric_fn(prediction,Y_train)
 
                 test_prediction , _ = self.forward(X_test)
                 test_loss,_ = loss_fn(test_prediction,Y_test)
-                test_acc = accuracy_fn(self,X_test,Y_test)
+                test_acc = metric_fn(test_prediction,Y_test)
 
                 train_loss_his.append(train_loss)
                 train_acc_his.append(train_acc)
@@ -163,3 +163,9 @@ class MultiLayerPerceptron:
         test_acc_his = np.array(test_acc_his).reshape(-1)
         epoch_his = np.array(epoch_his).reshape(-1)
         return train_loss_his,train_acc_his,test_loss_his,test_acc_his,epoch_his
+
+    def metric_function(self,X,Y,metric='accuracy_binary'):
+        metric_fn = Metrics.get(metric)
+        prediction , _ = self.forward(X)
+        acc = metric_fn(prediction,Y)
+        return acc
