@@ -1,12 +1,9 @@
 import numpy as np
 import Activations
-
+import Loss
 
 class PerceptronLayer:
-    '''
-    This is a very specefic Neuron class that uses sigmoid activation
-    and square loss.
-    '''
+
     def __init__(self,l0,l1,activation=None):
         '''
 
@@ -106,3 +103,63 @@ class MultiLayerPerceptron:
             d_back = self.layers[i].update_batch_gradient_descent(cache[i-1],cache[i],d_back,alpha)
 
         return d_back
+
+
+    def train(self,
+            X_train,
+            Y_train,
+            X_test,
+            Y_test,
+            accuracy_fn,
+            loss_function_string = 'mean_square_error',
+            epochs=200,
+            record_at = 100,
+            verbose = True,
+            learning_rate =0.1,
+            learning_rate_decay = False):
+
+        loss_fn = Loss.get(loss_function_string)
+        # --------TO DO ---------
+        # make accuracies also available
+        train_loss_his = []
+        train_acc_his = []
+        test_loss_his = []
+        test_acc_his = []
+        epoch_his = []
+
+        for i in range(epochs):
+            prediction , cache = self.forward(X_train)
+            # ---------TO DO------
+            # batch training to be incuded
+
+
+            loss,d_back= loss_fn(prediction,Y_train)
+            self.update_gradient(cache,d_back,learning_rate)
+            if learning_rate_decay:
+                learning_rate *= (1.0 / 1.0 + i)
+
+
+
+            if i % record_at == 0:
+                train_loss,_ = loss_fn(prediction,Y_train)
+                train_acc = accuracy_fn(self ,X_train,Y_train)
+
+                test_prediction , _ = self.forward(X_test)
+                test_loss,_ = loss_fn(test_prediction,Y_test)
+                test_acc = accuracy_fn(self,X_test,Y_test)
+
+                train_loss_his.append(train_loss)
+                train_acc_his.append(train_acc)
+                test_loss_his.append(test_loss)
+                test_acc_his.append(test_acc)
+                epoch_his.append(i)
+
+                if verbose:
+                    print("{}th EPOCH:\nTraining Loss:{}|Training Accuracy:{}|Test Loss:{}|Test Accuracy:{}".\
+                      format(i , train_loss , train_acc,test_loss,test_acc))
+        train_loss_his = np.array(train_loss_his).reshape(-1)
+        train_acc_his = np.array(train_acc_his).reshape(-1)
+        test_loss_his = np.array(test_loss_his).reshape(-1)
+        test_acc_his = np.array(test_acc_his).reshape(-1)
+        epoch_his = np.array(epoch_his).reshape(-1)
+        return train_loss_his,train_acc_his,test_loss_his,test_acc_his,epoch_his

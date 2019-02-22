@@ -44,3 +44,21 @@ def mean_binary_cross_entropy(pred , Y):
     d_pred = (pred - Y) / (float(N) *pred * (1-pred))
 
     return loss,d_pred
+
+def get(identifier):
+
+    '''
+    '''
+
+    if identifier == None:
+        return mean_square_error
+    elif identifier == 'mean_square_error':
+        return mean_square_error
+    elif identifier == 'mean_abs_error':
+        return mean_abs_error
+    elif identifier=='binary_cross_entropy':
+        return binary_cross_entropy
+    elif identifier=='mean_binary_cross_entropy':
+        return mean_binary_cross_entropy
+    else:
+        raise Exception('The {} loss function is not implemented'.format(identifier))
