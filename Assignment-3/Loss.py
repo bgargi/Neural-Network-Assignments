@@ -45,6 +45,14 @@ def mean_binary_cross_entropy(pred , Y):
 
     return loss,d_pred
 
+def mean_multiclass_cross_entropy(pred, Y):
+    num_classes = Y.shape[1]
+    N = Y.shape[0]
+    loss = (-1/N)*(np.log(pred)*y).sum(1).reshape([N,1])
+    d_pred = (-1*y*(1/p*float(N))).sum(0).reshape([num_classes,1])
+
+    return loss, d_pred
+
 def get(identifier):
 
     '''
@@ -60,5 +68,7 @@ def get(identifier):
         return binary_cross_entropy
     elif identifier=='mean_binary_cross_entropy':
         return mean_binary_cross_entropy
+    elif identifier=='mean_multiclass_cross_entropy':
+        return mean_multiclass_cross_entropy
     else:
         raise Exception('The {} loss function is not implemented'.format(identifier))
