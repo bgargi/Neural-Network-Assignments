@@ -7,7 +7,7 @@ def mean_square_error(pred,Y):
     loss = Y - pred
 
     # d_loss / d_pred
-    d_pred = (-1 * (loss)) / float(N)
+    d_pred = np.mean(-1 * (loss))
 
     loss = 0.5 * np.mean(loss * loss , axis = 0)
 
@@ -22,7 +22,7 @@ def mean_abs_error(pred , Y):
 
     loss = np.mean(np.abs(Y - pred) , axis = 0)
     #d_loss / d-pred
-    d_pred = (-1 * mask) / float(N)
+    d_pred = np.mean(-1 * mask)
 
     return loss,d_pred
 
@@ -31,25 +31,16 @@ def binary_cross_entropy(pred , Y):
     first_term = Y * np.log(pred)
     second_term = (1 - Y) * np.log(1 - pred)
     loss = -1  * np.sum( first_term + second_term ,axis =0)
-    d_pred = (pred - Y) / (pred * (1-pred))
+    d_pred = np.mean(np.nan_to_num((pred - Y) / (pred * (1-pred))))
 
     return loss,d_pred
 
-def mean_binary_cross_entropy(pred , Y):
-    N = pred.shape[0]
 
-    first_term = Y * np.log(pred)
-    second_term = (1 - Y) * np.log(1 - pred)
-    loss = -1  * np.mean( first_term + second_term ,axis =0)
-    d_pred = (pred - Y) / (float(N) *pred * (1-pred))
-
-    return loss,d_pred
-
-def mean_multiclass_cross_entropy(pred, Y):
+def multiclass_cross_entropy(pred, Y):
     num_classes = Y.shape[1]
     N = Y.shape[0]
     loss = (-1/N)*(np.log(pred)*Y).sum()#.reshape([N,1])
-    d_pred = (-1*Y*np.nan_to_num(1/pred*float(N))).sum(1).reshape([N,1])
+    d_pred = np.mean((-1*Y*np.nan_to_num(1/pred*float(N))).sum(1))
     #print("pred = ",pred)
     #print("Y = ", Y)
     #print("d_pred = ",d_pred)
