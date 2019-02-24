@@ -54,7 +54,7 @@ def linear(z):
 
 def linear_back(z):
     # returning df/dz
-    return 1
+    return np.ones_like(z)
 
 #--------FUNCTIONS TO CALL -----------
 def get(identifier):
