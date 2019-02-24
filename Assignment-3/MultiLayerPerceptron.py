@@ -5,9 +5,28 @@ import Metrics
 
 class PerceptronLayer:
 
-    def __init__(self,l0,l1,activation=None):
-        '''
+    """
+    A 1 layer fully connected neural network with flexible activation.
+    This will be used to make a MultiLayerPerceptron that uses modular design.
 
+
+    The architecture is defined by the user.
+
+    Note that this class does not implement any learning function.This class
+    is to initialize layers in a multi layer perceptron model efficiently.
+
+    The learnable parameters of the model are stored in as variables self.W,self.b
+    """
+
+    def __init__(self,l0,l1,activation='linear'):
+        '''
+        Initialize a layer of the network
+
+        Inputs:
+         - l0: an integer giving size of the input
+         - l1: an integer giving size of the output
+         -activation: a string giving activation function of this layer
+                    (default value:'linear')
         '''
         self.W = np.random.rand(l0 ,l1).astype(np.float64)# * np.sqrt(2.0 /l0 )
         self.b = np.zeros((l1)).astype(np.float64)
@@ -23,6 +42,9 @@ class PerceptronLayer:
         print(self.act_fn)
 
     def forward(self,X):
+        '''
+        '''
+
         #print(X.shape , self.W.shape , self.b.shape)
         h_x = X.dot(self.W) + self.b
 
@@ -75,6 +97,14 @@ class MultiLayerPerceptron:
     '''
 
     def __init__(self ,layer_list = None,activation_list = None):
+        '''
+        Initialize a layer of the network
+
+        Inputs:
+         - layer_list:
+         -activation_list:
+
+        '''
 
         if layer_list == None:
             raise Exception('layer_list cant be empty')
@@ -92,6 +122,9 @@ class MultiLayerPerceptron:
 
 
     def forward(self , X_train):
+        '''
+        '''
+
         a = X_train
         cache = []
         cache.append(a)
@@ -102,6 +135,9 @@ class MultiLayerPerceptron:
         return a,cache
 
     def update_gradient(self , cache, d_back , alpha=0.01):
+        '''
+        '''
+
         for i in range(self.hidden_layers , 0 , -1):
             d_back = self.layers[i].update_batch_gradient_descent(cache[i-1],cache[i],d_back,alpha)
 
@@ -120,6 +156,18 @@ class MultiLayerPerceptron:
             verbose = True,
             learning_rate =0.1,
             learning_rate_decay = False):
+
+        '''
+        function description
+
+        Inputs:
+        -
+        -
+        -
+
+
+
+        '''
 
         loss_fn = Loss.get(loss_function_string)
         metric_fn = Metrics.get(metric)
