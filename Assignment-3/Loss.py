@@ -60,9 +60,7 @@ def get(identifier):
         return mean_abs_error
     elif identifier=='binary_cross_entropy':
         return binary_cross_entropy
-    elif identifier=='mean_binary_cross_entropy':
-        return mean_binary_cross_entropy
-    elif identifier=='mean_multiclass_cross_entropy':
-        return mean_multiclass_cross_entropy
+    elif identifier=='multiclass_cross_entropy':
+        return multiclass_cross_entropy
     else:
         raise Exception('The {} loss function is not implemented'.format(identifier))
