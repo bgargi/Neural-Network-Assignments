@@ -4,15 +4,13 @@ import Loss
 import Metrics
 
 class PerceptronLayer:
-
     """
-    A 1 layer fully connected neural network with flexible activation.
+    A fully connected layer for a neural network with flexible activation.
     This will be used to make a MultiLayerPerceptron that uses modular design.
 
+    The neural network architecture is defined by the user.
 
-    The architecture is defined by the user.
-
-    Note that this class does not implement any learning function.This class
+    Note that this class does not implement any learning function. This class
     is to initialize layers in a multi layer perceptron model efficiently.
 
     The learnable parameters of the model are stored in as variables self.W,self.b
@@ -23,9 +21,9 @@ class PerceptronLayer:
         Initialize a layer of the network
 
         Inputs:
-         - l0: an integer giving size of the input
-         - l1: an integer giving size of the output
-         -activation: a string giving activation function of this layer
+         - l0: an integer giving size of the input i.e. the size of previous layer
+         - l1: an integer giving size of the output i.e the size of layer
+         - activation: a string giving activation function of this layer
                     (default value:'linear')
         '''
         self.W = np.random.rand(l0 ,l1).astype(np.float64)# * np.sqrt(2.0 /l0 )
@@ -37,12 +35,12 @@ class PerceptronLayer:
         self.act_fn = Activations.get(activation)
         self.act_fn_back = Activations.get_back(activation)
 
-
         print(self.W.shape , self.b.shape)
         print(self.act_fn)
 
     def forward(self,X):
         '''
+        This function performs the Forward propogation of a layer
         '''
 
         #print(X.shape , self.W.shape , self.b.shape)
@@ -56,7 +54,13 @@ class PerceptronLayer:
 
     def update_batch_gradient_descent(self , X , h_x , d_back,alpha = 0.01):
         '''
-        Describe each variable
+        This function performs the weight update of a layer using the Gradient descent optimizer
+
+        Inputs:
+        - X : The input to the layer
+        - h_x : The predicted output of the layer
+        - d_back : Gradients from front layers calculated using backpropogation
+        - alpha : The learning rate (Default : 0.01)
         '''
 
         # dloss/d(a) * d(a) / d(h_x)
@@ -90,20 +94,19 @@ class PerceptronLayer:
 
         return d_back
 
+
 class MultiLayerPerceptron:
     '''
-
-
+    This is the class for making a multi-layer neural network by using the PerceptronLayer class
     '''
 
     def __init__(self ,layer_list = None,activation_list = None):
         '''
-        Initialize a layer of the network
+        Initialize the neural networks by creating objects of the PerceptronLayer class
 
         Inputs:
-         - layer_list:
-         -activation_list:
-
+         - layer_list: list of layer sizes
+         - activation_list: list of activation functions for each layer
         '''
 
         if layer_list == None:
@@ -121,11 +124,14 @@ class MultiLayerPerceptron:
                 self.layers[i+1] = PerceptronLayer(layer_list[i] , layer_list[i+1])
 
 
-    def forward(self , X_train):
+    def forward(self , X):
         '''
+        This function performs the forward propogation on the neural network
+        Inputs:
+        - X : Input to the neural network
         '''
 
-        a = X_train
+        a = X
         cache = []
         cache.append(a)
         for i in range(self.hidden_layers):
@@ -134,8 +140,14 @@ class MultiLayerPerceptron:
 
         return a,cache
 
-    def update_gradient(self , cache, d_back , alpha=0.01):
+    def update_gradient(self, cache, d_back , alpha=0.01):
         '''
+        This function performs backpropogation and uses the Gradient descent optimizer for updating weights
+
+        Inputs :
+        - cache : The values required for backpropogation corresponing to a layer
+        - d_back : The gradients from front layers during backpropogation
+        - alpha : the learningrate (default : 0.01)
         '''
 
         for i in range(self.hidden_layers , 0 , -1):
@@ -158,15 +170,20 @@ class MultiLayerPerceptron:
             learning_rate_decay = False):
 
         '''
-        function description
+        This function trains the neural network
 
         Inputs:
-        -
-        -
-        -
-
-
-
+        - X_train : The training dataset
+        - Y_train : The training target values
+        - X_test : The testing dataset
+        - Y_test : The testing target values
+        - metric : The metric function for assesing the model (default : accuracy_binary)
+        - loss_function_string : The loss function (default : mean_square_error)
+        - epochs : The number of epochs for which the model will be trained (default : 200)
+        - record_at :  The epoch interval at which the loss and metric will be recorded (default : 100)
+        - Verbose : Display the statistics, metrics and progress of the model while training (default : True)
+        - learning_rate : the learning rate (default : 0.1)
+        - learning_rate_decay : Decaying the learning rate (default : False)
         '''
 
         loss_fn = Loss.get(loss_function_string)
