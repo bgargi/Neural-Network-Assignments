@@ -9,7 +9,7 @@ class PerceptronLayer:
         '''
 
         '''
-        self.W = np.random.randn(l0 ,l1).astype(np.float64) * np.sqrt(2.0 /l0 )
+        self.W = np.random.rand(l0 ,l1).astype(np.float64)# * np.sqrt(2.0 /l0 )
         self.b = np.zeros((l1)).astype(np.float64)
 
         # self.grad = {'W':np.zeros((l0,l1)).astype(np.float64) ,
@@ -55,8 +55,10 @@ class PerceptronLayer:
         d_X = d_h_x.dot(self.W.T)
 
         #Update W
+        #print("W_before = ", self.W)
         delta_W = d_W
         self.W = self.W - alpha * delta_W
+        #print("W_after = ",self.W)
 
         #Update b
         delta_b = np.sum(d_b , axis =0)

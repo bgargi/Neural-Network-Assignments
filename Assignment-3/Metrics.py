@@ -13,9 +13,11 @@ def accuracy_multiclass(pred, Y):
 	'''
 	Y is column vector of one hot row vectors
 	'''
+	#print("acc, pred = ",pred)
+	#print("acc, Y = ",Y)
 	acc = np.sum(pred.argmax(1)==Y.argmax(1))
 	acc = float(acc) / len(Y)
-	return accs
+	return acc
 
 def get(identifier):
 	if identifier == None:
@@ -24,3 +26,5 @@ def get(identifier):
 		return accuracy_binary
 	elif identifier == 'accuracy_multiclass':
 		return accuracy_multiclass
+	else:
+		raise Exception('The {} metric is not implemented'.format(identifier))

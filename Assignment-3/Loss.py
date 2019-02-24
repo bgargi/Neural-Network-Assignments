@@ -48,8 +48,11 @@ def mean_binary_cross_entropy(pred , Y):
 def mean_multiclass_cross_entropy(pred, Y):
     num_classes = Y.shape[1]
     N = Y.shape[0]
-    loss = (-1/N)*(np.log(pred)*y).sum(1).reshape([N,1])
-    d_pred = (-1*y*(1/p*float(N))).sum(0).reshape([num_classes,1])
+    loss = (-1/N)*(np.log(pred)*Y).sum()#.reshape([N,1])
+    d_pred = (-1*Y*np.nan_to_num(1/pred*float(N))).sum(1).reshape([N,1])
+    #print("pred = ",pred)
+    #print("Y = ", Y)
+    #print("d_pred = ",d_pred)
 
     return loss, d_pred
 
