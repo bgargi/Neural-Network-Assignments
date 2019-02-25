@@ -27,7 +27,7 @@ class PerceptronLayer:
          - activation: a string giving activation function of this layer
                     (default value:'linear')
         """
-        self.W = np.random.rand(l0 ,l1).astype(np.float64)# * np.sqrt(2.0 /l0 )
+        self.W = np.random.randn(l0 ,l1).astype(np.float64)# * np.sqrt(2.0 /l0 )
         self.b = np.zeros((l1)).astype(np.float64)
 
         # self.grad = {'W':np.zeros((l0,l1)).astype(np.float64) ,
