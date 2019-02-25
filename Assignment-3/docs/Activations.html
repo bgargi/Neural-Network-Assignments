@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Activations</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Activations</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/mehul/machine_learning/Speech_Processing/Neural-Network-Assignments/Assignment-3/Activations.py">/home/mehul/machine_learning/Speech_Processing/Neural-Network-Assignments/Assignment-3/Activations.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-get"><strong>get</strong></a>(identifier=None)</dt><dd><tt>This&nbsp;function&nbsp;gets&nbsp;fetches&nbsp;the&nbsp;activation&nbsp;function&nbsp;identified&nbsp;by<br>
+the&nbsp;string&nbsp;'identifier'.If&nbsp;such&nbsp;a&nbsp;function&nbsp;is&nbsp;not&nbsp;implemented<br>
+this&nbsp;raises&nbsp;an&nbsp;Exception.<br>
+&nbsp;<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;identifier&nbsp;:&nbsp;a&nbsp;string&nbsp;to&nbsp;identify&nbsp;the&nbsp;activation&nbsp;function&nbsp;to&nbsp;fetch<br>
+(default&nbsp;value&nbsp;=&nbsp;None.This&nbsp;fetches&nbsp;linear&nbsp;activaton)</tt></dd></dl>
+ <dl><dt><a name="-get_back"><strong>get_back</strong></a>(identifier)</dt><dd><tt>This&nbsp;function&nbsp;gets&nbsp;fetches&nbsp;the&nbsp;functions&nbsp;for&nbsp;backpropogating&nbsp;identified&nbsp;by<br>
+the&nbsp;string&nbsp;'identifier'.If&nbsp;such&nbsp;a&nbsp;function&nbsp;is&nbsp;not&nbsp;implemented<br>
+this&nbsp;raises&nbsp;an&nbsp;Exception.<br>
+&nbsp;<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;identifier&nbsp;:&nbsp;a&nbsp;string&nbsp;to&nbsp;identify&nbsp;the&nbsp;activation_back&nbsp;function&nbsp;to&nbsp;fetch<br>
+(default&nbsp;value&nbsp;=&nbsp;None.This&nbsp;fetches&nbsp;linear&nbsp;backpropogation)</tt></dd></dl>
+ <dl><dt><a name="-linear"><strong>linear</strong></a>(z)</dt><dd><tt>Linear&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-linear_back"><strong>linear_back</strong></a>(z)</dt><dd><tt>Backpropogation&nbsp;for&nbsp;Linear&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-relu"><strong>relu</strong></a>(z)</dt><dd><tt>Relu&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-relu_back"><strong>relu_back</strong></a>(z)</dt><dd><tt>Backpropogation&nbsp;for&nbsp;Relu&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-sigmoid"><strong>sigmoid</strong></a>(z)</dt><dd><tt>Sigmoid&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-sigmoid_back"><strong>sigmoid_back</strong></a>(z)</dt><dd><tt>Backpropogation&nbsp;for&nbsp;Sigmoid&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-softmax"><strong>softmax</strong></a>(z)</dt><dd><tt>Softmax&nbsp;Activation.This&nbsp;applies&nbsp;softmax&nbsp;normalization&nbsp;on&nbsp;axis&nbsp;=1<br>
+Note&nbsp;that&nbsp;when&nbsp;using&nbsp;softmax&nbsp;use&nbsp;**the&nbsp;softmax_multiclass_cross_entropy&nbsp;loss&nbsp;only&nbsp;and<br>
+this&nbsp;activation&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;the&nbsp;last&nbsp;layer&nbsp;only**.(defined&nbsp;in&nbsp;[[Loss.py]])<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-softmax_back"><strong>softmax_back</strong></a>(z)</dt><dd><tt>Backpropogation&nbsp;for&nbsp;Softmax&nbsp;Activation.<br>
+The&nbsp;partial&nbsp;differentiation&nbsp;is&nbsp;handeled&nbsp;with&nbsp;softmax_multiclass_cross_entropy<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-tanh"><strong>tanh</strong></a>(z)</dt><dd><tt>Tanh&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-tanh_back"><strong>tanh_back</strong></a>(z)</dt><dd><tt>Backpropogation&nbsp;for&nbsp;Tanh&nbsp;Activation<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;z&nbsp;:&nbsp;A&nbsp;2D&nbsp;numpy&nbsp;array</tt></dd></dl>
+</td></tr></table>
+</body></html>

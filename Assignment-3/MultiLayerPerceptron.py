@@ -13,19 +13,20 @@ class PerceptronLayer:
     Note that this class does not implement any learning function. This class
     is to initialize layers in a multi layer perceptron model efficiently.
 
-    The learnable parameters of the model are stored in as variables self.W,self.b
+    The learnable parameters of the model are stored in as variables _self.W_,_self.b_
     """
 
     def __init__(self,l0,l1,activation='linear'):
-        '''
+        """
         Initialize a layer of the network
 
         Inputs:
+
          - l0: an integer giving size of the input i.e. the size of previous layer
          - l1: an integer giving size of the output i.e the size of layer
          - activation: a string giving activation function of this layer
                     (default value:'linear')
-        '''
+        """
         self.W = np.random.rand(l0 ,l1).astype(np.float64)# * np.sqrt(2.0 /l0 )
         self.b = np.zeros((l1)).astype(np.float64)
 
@@ -39,9 +40,9 @@ class PerceptronLayer:
         print(self.act_fn)
 
     def forward(self,X):
-        '''
+        """
         This function performs the Forward propogation of a layer
-        '''
+        """
 
         #print(X.shape , self.W.shape , self.b.shape)
         h_x = X.dot(self.W) + self.b
@@ -53,7 +54,7 @@ class PerceptronLayer:
 
 
     def update_batch_gradient_descent(self , X , h_x , d_back,alpha = 0.01):
-        '''
+        """
         This function performs the weight update of a layer using the Gradient descent optimizer
 
         Inputs:
@@ -61,7 +62,7 @@ class PerceptronLayer:
         - h_x : The predicted output of the layer
         - d_back : Gradients from front layers calculated using backpropogation
         - alpha : The learning rate (Default : 0.01)
-        '''
+        """
 
         # dloss/d(a) * d(a) / d(h_x)
 
@@ -96,18 +97,18 @@ class PerceptronLayer:
 
 
 class MultiLayerPerceptron:
-    '''
+    """
     This is the class for making a multi-layer neural network by using the PerceptronLayer class
-    '''
+    """
 
     def __init__(self ,layer_list = None,activation_list = None):
-        '''
+        """
         Initialize the neural networks by creating objects of the PerceptronLayer class
 
         Inputs:
          - layer_list: list of layer sizes
          - activation_list: list of activation functions for each layer
-        '''
+        """
 
         if layer_list == None:
             raise Exception('layer_list cant be empty')
@@ -125,11 +126,11 @@ class MultiLayerPerceptron:
 
 
     def forward(self , X):
-        '''
+        """
         This function performs the forward propogation on the neural network
         Inputs:
         - X : Input to the neural network
-        '''
+        """
 
         a = X
         cache = []
@@ -141,14 +142,14 @@ class MultiLayerPerceptron:
         return a,cache
 
     def update_gradient(self, cache, d_back , alpha=0.01):
-        '''
+        """
         This function performs backpropogation and uses the Gradient descent optimizer for updating weights
 
         Inputs :
         - cache : The values required for backpropogation corresponing to a layer
         - d_back : The gradients from front layers during backpropogation
         - alpha : the learningrate (default : 0.01)
-        '''
+        """
 
         for i in range(self.hidden_layers , 0 , -1):
             d_back = self.layers[i].update_batch_gradient_descent(cache[i-1],cache[i],d_back,alpha)
@@ -169,7 +170,7 @@ class MultiLayerPerceptron:
             learning_rate =0.1,
             learning_rate_decay = False):
 
-        '''
+        """
         This function trains the neural network
 
         Inputs:
@@ -184,7 +185,7 @@ class MultiLayerPerceptron:
         - Verbose : Display the statistics, metrics and progress of the model while training (default : True)
         - learning_rate : the learning rate (default : 0.1)
         - learning_rate_decay : Decaying the learning rate (default : False)
-        '''
+        """
 
         loss_fn = Loss.get(loss_function_string)
         metric_fn = Metrics.get(metric)

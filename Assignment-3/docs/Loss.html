@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Loss</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Loss</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/mehul/machine_learning/Speech_Processing/Neural-Network-Assignments/Assignment-3/Loss.py">/home/mehul/machine_learning/Speech_Processing/Neural-Network-Assignments/Assignment-3/Loss.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-binary_cross_entropy"><strong>binary_cross_entropy</strong></a>(pred, Y)</dt><dd><tt>The&nbsp;binary&nbsp;cross&nbsp;entropy&nbsp;loss.<br>
+&nbsp;<br>
+Note<br>
+-pred&nbsp;should&nbsp;be&nbsp;in&nbsp;range&nbsp;[0,1]<br>
+-Y&nbsp;should&nbsp;be&nbsp;a&nbsp;binary&nbsp;vector<br>
+&nbsp;<br>
+Inputs<br>
+-pred:&nbsp;a&nbsp;numpy&nbsp;array&nbsp;reprsenting&nbsp;predictions&nbsp;made&nbsp;by&nbsp;the&nbsp;model<br>
+-Y&nbsp;:&nbsp;a&nbsp;numpy&nbsp;&nbsp;array&nbsp;representing&nbsp;the&nbsp;target&nbsp;variable<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;shape(pred)&nbsp;=&nbsp;shape(Y)<br>
+&nbsp;<br>
+Returns<br>
+-&nbsp;loss&nbsp;:&nbsp;a&nbsp;scalar&nbsp;value&nbsp;to&nbsp;represent&nbsp;the&nbsp;loss<br>
+-&nbsp;d_pred&nbsp;:&nbsp;a&nbsp;vector&nbsp;of&nbsp;the&nbsp;same&nbsp;shape&nbsp;as&nbsp;pred.&nbsp;It&nbsp;represents&nbsp;the&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;backpropogation(shape(d_pred)&nbsp;=&nbsp;shape(pred))</tt></dd></dl>
+ <dl><dt><a name="-get"><strong>get</strong></a>(identifier)</dt><dd><tt>This&nbsp;function&nbsp;gets&nbsp;fetches&nbsp;the&nbsp;loss&nbsp;identified&nbsp;by<br>
+the&nbsp;string&nbsp;'identifier'.If&nbsp;such&nbsp;a&nbsp;function&nbsp;is&nbsp;not&nbsp;implemented<br>
+this&nbsp;raises&nbsp;an&nbsp;Exception.<br>
+&nbsp;<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;identifier&nbsp;:&nbsp;a&nbsp;string&nbsp;to&nbsp;identify&nbsp;the&nbsp;loss&nbsp;function&nbsp;to&nbsp;fetch<br>
+(default&nbsp;value&nbsp;=&nbsp;None.This&nbsp;fetches&nbsp;MSE&nbsp;loss)</tt></dd></dl>
+ <dl><dt><a name="-mean_abs_error"><strong>mean_abs_error</strong></a>(pred, Y)</dt><dd><tt>The&nbsp;mean&nbsp;absolute&nbsp;error&nbsp;loss&nbsp;function<br>
+&nbsp;<br>
+&nbsp;<br>
+Inputs<br>
+-pred:&nbsp;a&nbsp;numpy&nbsp;array&nbsp;reprsenting&nbsp;predictions&nbsp;made&nbsp;by&nbsp;the&nbsp;model<br>
+-Y&nbsp;:&nbsp;a&nbsp;numpy&nbsp;&nbsp;array&nbsp;representing&nbsp;the&nbsp;target&nbsp;variable<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;shape(pred)&nbsp;=&nbsp;shape(Y)<br>
+&nbsp;<br>
+Returns<br>
+-&nbsp;loss&nbsp;:&nbsp;a&nbsp;scalar&nbsp;value&nbsp;to&nbsp;represent&nbsp;the&nbsp;loss<br>
+-&nbsp;d_pred&nbsp;:&nbsp;a&nbsp;vector&nbsp;of&nbsp;the&nbsp;same&nbsp;shape&nbsp;as&nbsp;pred.&nbsp;It&nbsp;represents&nbsp;the&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;backpropogation(shape(d_pred)&nbsp;=&nbsp;shape(pred))</tt></dd></dl>
+ <dl><dt><a name="-mean_square_error"><strong>mean_square_error</strong></a>(pred, Y)</dt><dd><tt>The&nbsp;mean&nbsp;square&nbsp;error&nbsp;loss&nbsp;function<br>
+&nbsp;<br>
+&nbsp;<br>
+Inputs<br>
+-pred:&nbsp;a&nbsp;numpy&nbsp;array&nbsp;reprsenting&nbsp;predictions&nbsp;made&nbsp;by&nbsp;the&nbsp;model<br>
+-Y&nbsp;:&nbsp;a&nbsp;numpy&nbsp;&nbsp;array&nbsp;representing&nbsp;the&nbsp;target&nbsp;variable<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;shape(pred)&nbsp;=&nbsp;shape(Y)<br>
+&nbsp;<br>
+Returns<br>
+-&nbsp;loss&nbsp;:&nbsp;a&nbsp;scalar&nbsp;value&nbsp;to&nbsp;represent&nbsp;the&nbsp;loss<br>
+-&nbsp;d_pred&nbsp;:&nbsp;a&nbsp;vector&nbsp;of&nbsp;the&nbsp;same&nbsp;shape&nbsp;as&nbsp;pred.&nbsp;It&nbsp;represents&nbsp;the&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;backpropogation(shape(d_pred)&nbsp;=&nbsp;shape(pred))</tt></dd></dl>
+ <dl><dt><a name="-multiclass_cross_entropy"><strong>multiclass_cross_entropy</strong></a>(pred, Y)</dt><dd><tt>The&nbsp;multiclass&nbsp;cross&nbsp;entropy&nbsp;loss.Prefer&nbsp;using&nbsp;the<br>
+softmax_multiclass_cross_entropy<br>
+&nbsp;<br>
+Note<br>
+-pred&nbsp;should&nbsp;be&nbsp;in&nbsp;range&nbsp;[0,1]<br>
+-Y&nbsp;should&nbsp;be&nbsp;Column&nbsp;vector&nbsp;of&nbsp;one&nbsp;hot&nbsp;row&nbsp;vectors<br>
+&nbsp;<br>
+Inputs<br>
+-pred:&nbsp;a&nbsp;numpy&nbsp;array&nbsp;reprsenting&nbsp;predictions&nbsp;made&nbsp;by&nbsp;the&nbsp;model<br>
+-Y&nbsp;:&nbsp;a&nbsp;numpy&nbsp;&nbsp;array&nbsp;representing&nbsp;the&nbsp;target&nbsp;variable<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;shape(pred)&nbsp;=&nbsp;shape(Y)<br>
+&nbsp;<br>
+Returns<br>
+-&nbsp;loss&nbsp;:&nbsp;a&nbsp;scalar&nbsp;value&nbsp;to&nbsp;represent&nbsp;the&nbsp;loss<br>
+-&nbsp;d_pred&nbsp;:&nbsp;a&nbsp;vector&nbsp;of&nbsp;the&nbsp;same&nbsp;shape&nbsp;as&nbsp;pred.&nbsp;It&nbsp;represents&nbsp;the&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;backpropogation(shape(d_pred)&nbsp;=&nbsp;shape(pred))</tt></dd></dl>
+ <dl><dt><a name="-softmax_multiclass_cross_entropy"><strong>softmax_multiclass_cross_entropy</strong></a>(pred, Y)</dt><dd><tt>The&nbsp;multiclass&nbsp;cross&nbsp;entropy&nbsp;loss&nbsp;with&nbsp;a&nbsp;softmax&nbsp;activation.<br>
+&nbsp;<br>
+Note<br>
+-Use&nbsp;this&nbsp;loss&nbsp;when&nbsp;softmax(defined&nbsp;in&nbsp;[[Activations.py]])&nbsp;is&nbsp;used&nbsp;as&nbsp;activation&nbsp;for&nbsp;the&nbsp;last&nbsp;layer.<br>
+-pred&nbsp;should&nbsp;be&nbsp;in&nbsp;range&nbsp;[0,1]<br>
+-Y&nbsp;should&nbsp;be&nbsp;Column&nbsp;vector&nbsp;of&nbsp;one&nbsp;hot&nbsp;row&nbsp;vectors<br>
+&nbsp;<br>
+Inputs<br>
+-pred:&nbsp;a&nbsp;numpy&nbsp;array&nbsp;reprsenting&nbsp;predictions&nbsp;made&nbsp;by&nbsp;the&nbsp;model<br>
+-Y&nbsp;:&nbsp;a&nbsp;numpy&nbsp;&nbsp;array&nbsp;representing&nbsp;the&nbsp;target&nbsp;variable<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;shape(pred)&nbsp;=&nbsp;shape(Y)<br>
+&nbsp;<br>
+Returns<br>
+-&nbsp;loss&nbsp;:&nbsp;a&nbsp;scalar&nbsp;value&nbsp;to&nbsp;represent&nbsp;the&nbsp;loss<br>
+-&nbsp;d_pred&nbsp;:&nbsp;a&nbsp;vector&nbsp;of&nbsp;the&nbsp;same&nbsp;shape&nbsp;as&nbsp;pred.&nbsp;It&nbsp;represents&nbsp;the&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;backpropogation(shape(d_pred)&nbsp;=&nbsp;shape(pred))</tt></dd></dl>
+</td></tr></table>
+</body></html>
