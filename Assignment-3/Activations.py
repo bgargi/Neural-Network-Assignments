@@ -3,11 +3,13 @@ import numpy as np
 # ----------SIGMOID---------------
 
 def sigmoid(z):
+    z = np.clip(z , -500 , 500)
     #this is the non-linear activation function
     # print(z)
     return (1 / (1 + np.exp(-z)))
 
 def sigmoid_back(z):
+    z = np.clip(z , -500 , 500)
     # d sigmoid(z) / dz = sigmoid(z) [ 1 - sigmoid(z)]
     return sigmoid(z)* ( 1 - sigmoid(z))
 
@@ -23,10 +25,10 @@ def tanh_back(z):
 # ------------RELU------------
 
 def relu(z):
-    return (z >= 0 ) * z
+    return (z > 0 ) * z
 
 def relu_back(z):
-    return (z>=0)
+    return (z>0).astype(np.float64)
 
 # ------------SOFTMAX-------------
 def softmax(z):
@@ -35,6 +37,9 @@ def softmax(z):
     Ony for 2 dimensional input
 
     '''
+
+    z = np.clip(z , -800 , 800)
+
     z = np.asarray(z).T
     z = z - z.max(0)
     exp_z = np.exp(z)
@@ -42,11 +47,12 @@ def softmax(z):
     return softmax_z
 
 def softmax_back(z):
-    z = np.asarray(z).T
-    z = z - z.max(0)
-    exp_z = np.exp(z)
-    softmax_z = (exp_z / exp_z.sum(0)).T
-    return softmax_z * (1 - softmax_z)
+    # z = np.asarray(z).T
+    # z = z - z.max(0)
+    # exp_z = np.exp(z)
+    # softmax_z = (exp_z / exp_z.sum(0)).T
+
+    return np.ones_like(z)
 
 # -----------LINEAR----------------
 def linear(z):
