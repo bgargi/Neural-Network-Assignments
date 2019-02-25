@@ -1,8 +1,45 @@
 import numpy as np
 
+'''
+This file defines various loss functions.
+The function are defined in the following format:-
+(Note that any function can be added as long as it follows the format)
 
+def LossFunctionName(pred , Y):
+	any operations
+	return loss,d_pred
+
+Inputs
+-pred: a numpy array reprsenting predictions made by the model
+-Y : a numpy  array representing the target variable
+
+Note that shape(pred) = shape(Y)
+
+Returns
+- loss : a scalar value to represent the loss
+- d_pred : a vector of the same shape as pred. It represents the error
+        to be used for backpropogation
+
+Note that you will need to include the new loss function string
+to the get function.
+'''
 
 def mean_square_error(pred,Y):
+    '''
+    The mean square error loss function
+
+
+    Inputs
+    -pred: a numpy array reprsenting predictions made by the model
+    -Y : a numpy  array representing the target variable
+
+    Note that shape(pred) = shape(Y)
+
+    Returns
+    - loss : a scalar value to represent the loss
+    - d_pred : a vector of the same shape as pred. It represents the error
+            to be used for backpropogation(shape(d_pred) = shape(pred))
+    '''
     N = pred.shape[0]
     loss = Y - pred
 
@@ -14,6 +51,21 @@ def mean_square_error(pred,Y):
     return loss,d_pred
 
 def mean_abs_error(pred , Y):
+    '''
+    The mean absolute error loss function
+
+
+    Inputs
+    -pred: a numpy array reprsenting predictions made by the model
+    -Y : a numpy  array representing the target variable
+
+    Note that shape(pred) = shape(Y)
+
+    Returns
+    - loss : a scalar value to represent the loss
+    - d_pred : a vector of the same shape as pred. It represents the error
+            to be used for backpropogation(shape(d_pred) = shape(pred))
+    '''
     N = pred.shape[0]
     loss = Y -pred
     # mask to account for the absolute function
@@ -28,8 +80,24 @@ def mean_abs_error(pred , Y):
 
 def binary_cross_entropy(pred , Y):
     '''
-    pred should be in range [0,1]
+    The binary cross entropy loss.
+
+    Note
+    -pred should be in range [0,1]
+    -Y should be a binary vector
+
+    Inputs
+    -pred: a numpy array reprsenting predictions made by the model
+    -Y : a numpy  array representing the target variable
+
+    Note that shape(pred) = shape(Y)
+
+    Returns
+    - loss : a scalar value to represent the loss
+    - d_pred : a vector of the same shape as pred. It represents the error
+            to be used for backpropogation(shape(d_pred) = shape(pred))
     '''
+
     # clipping the inputs so there is no overflow
     epsilon = 1e-11
     pred = np.clip(pred , epsilon, 1 - epsilon)
@@ -46,6 +114,25 @@ def binary_cross_entropy(pred , Y):
 
 
 def multiclass_cross_entropy(pred, Y):
+    '''
+    The multiclass cross entropy loss.Prefer using the
+    softmax_multiclass_cross_entropy
+
+    Note
+    -pred should be in range [0,1]
+    -Y should be Column vector of one hot row vectors
+
+    Inputs
+    -pred: a numpy array reprsenting predictions made by the model
+    -Y : a numpy  array representing the target variable
+
+    Note that shape(pred) = shape(Y)
+
+    Returns
+    - loss : a scalar value to represent the loss
+    - d_pred : a vector of the same shape as pred. It represents the error
+            to be used for backpropogation(shape(d_pred) = shape(pred))
+    '''
 
     # clipping the inputs so there is no overflow
     epsilon = 1e-11
@@ -64,6 +151,25 @@ def multiclass_cross_entropy(pred, Y):
     return loss, d_pred
 
 def softmax_multiclass_cross_entropy(pred ,Y):
+    '''
+    The multiclass cross entropy loss with a softmax activation.
+
+    Note
+    -Use this loss when softmax(defined in [[Activations.py]]) is used as activation for the last layer.
+    -pred should be in range [0,1]
+    -Y should be Column vector of one hot row vectors
+
+    Inputs
+    -pred: a numpy array reprsenting predictions made by the model
+    -Y : a numpy  array representing the target variable
+
+    Note that shape(pred) = shape(Y)
+
+    Returns
+    - loss : a scalar value to represent the loss
+    - d_pred : a vector of the same shape as pred. It represents the error
+            to be used for backpropogation(shape(d_pred) = shape(pred))
+    '''
     epsilon = 1e-11
     pred = np.clip(pred , epsilon , 1 - epsilon)
     loss = np.mean(-np.sum(np.log(pred)*Y, axis = 1) , axis = 0)
@@ -71,10 +177,17 @@ def softmax_multiclass_cross_entropy(pred ,Y):
     return loss,d_pred
 
 def get(identifier):
+    '''
+    This function gets fetches the loss identified by
+    the string 'identifier'.If such a function is not implemented
+    this raises an Exception.
+
+
+    Inputs:
+    - identifier : a string to identify the loss function to fetch
+    (default value = None.This fetches MSE loss)
 
     '''
-    '''
-
     if identifier == None:
         return mean_square_error
     elif identifier == 'mean_square_error':
