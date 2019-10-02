@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module MultiLayerPerceptron</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>MultiLayerPerceptron</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href="index.html">index</a><br><a href="file:./../Assignment-3/MultiLayerPerceptron.py">MultiLayerPerceptron.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="Activations.html">Activations</a><br>
+</td><td width="25%" valign=top><a href="Loss.html">Loss</a><br>
+</td><td width="25%" valign=top><a href="Metrics.html">Metrics</a><br>
+</td><td width="25%" valign=top><a href="https://www.numpy.org">numpy</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="MultiLayerPerceptron.html#MultiLayerPerceptron">MultiLayerPerceptron</a>
+</font></dt><dt><font face="helvetica, arial"><a href="MultiLayerPerceptron.html#PerceptronLayer">PerceptronLayer</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MultiLayerPerceptron">class <strong>MultiLayerPerceptron</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;is&nbsp;the&nbsp;class&nbsp;for&nbsp;making&nbsp;a&nbsp;multi-layer&nbsp;neural&nbsp;network&nbsp;by&nbsp;using&nbsp;the&nbsp;<a href="#PerceptronLayer">PerceptronLayer</a>&nbsp;class<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MultiLayerPerceptron-__init__"><strong>__init__</strong></a>(self, layer_list=None, activation_list=None)</dt><dd><tt>Initialize&nbsp;the&nbsp;neural&nbsp;networks&nbsp;by&nbsp;creating&nbsp;objects&nbsp;of&nbsp;the&nbsp;<a href="#PerceptronLayer">PerceptronLayer</a>&nbsp;class<br>
+&nbsp;<br>
+Inputs:<br>
+&nbsp;-&nbsp;layer_list:&nbsp;list&nbsp;of&nbsp;layer&nbsp;sizes<br>
+&nbsp;-&nbsp;activation_list:&nbsp;list&nbsp;of&nbsp;activation&nbsp;functions&nbsp;for&nbsp;each&nbsp;layer</tt></dd></dl>
+
+<dl><dt><a name="MultiLayerPerceptron-forward"><strong>forward</strong></a>(self, X)</dt><dd><tt>This&nbsp;function&nbsp;performs&nbsp;the&nbsp;forward&nbsp;propogation&nbsp;on&nbsp;the&nbsp;neural&nbsp;network<br>
+Inputs:<br>
+-&nbsp;X&nbsp;:&nbsp;Input&nbsp;to&nbsp;the&nbsp;neural&nbsp;network</tt></dd></dl>
+
+<dl><dt><a name="MultiLayerPerceptron-metric_function"><strong>metric_function</strong></a>(self, X, Y, metric='accuracy_binary')</dt></dl>
+
+<dl><dt><a name="MultiLayerPerceptron-train"><strong>train</strong></a>(self, X_train, Y_train, X_test, Y_test, metric='accuracy_binary', loss_function_string='mean_square_error', epochs=200, record_at=100, verbose=True, learning_rate=0.1, learning_rate_decay=False)</dt><dd><tt>This&nbsp;function&nbsp;trains&nbsp;the&nbsp;neural&nbsp;network<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;X_train&nbsp;:&nbsp;The&nbsp;training&nbsp;dataset<br>
+-&nbsp;Y_train&nbsp;:&nbsp;The&nbsp;training&nbsp;target&nbsp;values<br>
+-&nbsp;X_test&nbsp;:&nbsp;The&nbsp;testing&nbsp;dataset<br>
+-&nbsp;Y_test&nbsp;:&nbsp;The&nbsp;testing&nbsp;target&nbsp;values<br>
+-&nbsp;metric&nbsp;:&nbsp;The&nbsp;metric&nbsp;function&nbsp;for&nbsp;assesing&nbsp;the&nbsp;model&nbsp;(default&nbsp;:&nbsp;accuracy_binary)<br>
+-&nbsp;loss_function_string&nbsp;:&nbsp;The&nbsp;loss&nbsp;function&nbsp;(default&nbsp;:&nbsp;mean_square_error)<br>
+-&nbsp;epochs&nbsp;:&nbsp;The&nbsp;number&nbsp;of&nbsp;epochs&nbsp;for&nbsp;which&nbsp;the&nbsp;model&nbsp;will&nbsp;be&nbsp;trained&nbsp;(default&nbsp;:&nbsp;200)<br>
+-&nbsp;record_at&nbsp;:&nbsp;&nbsp;The&nbsp;epoch&nbsp;interval&nbsp;at&nbsp;which&nbsp;the&nbsp;loss&nbsp;and&nbsp;metric&nbsp;will&nbsp;be&nbsp;recorded&nbsp;(default&nbsp;:&nbsp;100)<br>
+-&nbsp;Verbose&nbsp;:&nbsp;Display&nbsp;the&nbsp;statistics,&nbsp;metrics&nbsp;and&nbsp;progress&nbsp;of&nbsp;the&nbsp;model&nbsp;while&nbsp;training&nbsp;(default&nbsp;:&nbsp;True)<br>
+-&nbsp;learning_rate&nbsp;:&nbsp;the&nbsp;learning&nbsp;rate&nbsp;(default&nbsp;:&nbsp;0.1)<br>
+-&nbsp;learning_rate_decay&nbsp;:&nbsp;Decaying&nbsp;the&nbsp;learning&nbsp;rate&nbsp;(default&nbsp;:&nbsp;False)</tt></dd></dl>
+
+<dl><dt><a name="MultiLayerPerceptron-update_gradient"><strong>update_gradient</strong></a>(self, cache, d_back, alpha=0.01)</dt><dd><tt>This&nbsp;function&nbsp;performs&nbsp;backpropogation&nbsp;and&nbsp;uses&nbsp;the&nbsp;Gradient&nbsp;descent&nbsp;optimizer&nbsp;for&nbsp;updating&nbsp;weights<br>
+&nbsp;<br>
+Inputs&nbsp;:<br>
+-&nbsp;cache&nbsp;:&nbsp;The&nbsp;values&nbsp;required&nbsp;for&nbsp;backpropogation&nbsp;corresponing&nbsp;to&nbsp;a&nbsp;layer<br>
+-&nbsp;d_back&nbsp;:&nbsp;The&nbsp;gradients&nbsp;from&nbsp;front&nbsp;layers&nbsp;during&nbsp;backpropogation<br>
+-&nbsp;alpha&nbsp;:&nbsp;the&nbsp;learningrate&nbsp;(default&nbsp;:&nbsp;0.01)</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PerceptronLayer">class <strong>PerceptronLayer</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;fully&nbsp;connected&nbsp;layer&nbsp;for&nbsp;a&nbsp;neural&nbsp;network&nbsp;with&nbsp;flexible&nbsp;activation.<br>
+This&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;make&nbsp;a&nbsp;<a href="#MultiLayerPerceptron">MultiLayerPerceptron</a>&nbsp;that&nbsp;uses&nbsp;modular&nbsp;design.<br>
+&nbsp;<br>
+The&nbsp;neural&nbsp;network&nbsp;architecture&nbsp;is&nbsp;defined&nbsp;by&nbsp;the&nbsp;user.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;this&nbsp;class&nbsp;does&nbsp;not&nbsp;implement&nbsp;any&nbsp;learning&nbsp;function.&nbsp;This&nbsp;class<br>
+is&nbsp;to&nbsp;initialize&nbsp;layers&nbsp;in&nbsp;a&nbsp;multi&nbsp;layer&nbsp;perceptron&nbsp;model&nbsp;efficiently.<br>
+&nbsp;<br>
+The&nbsp;learnable&nbsp;parameters&nbsp;of&nbsp;the&nbsp;model&nbsp;are&nbsp;stored&nbsp;in&nbsp;as&nbsp;variables&nbsp;_self.W_,_self.b_<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PerceptronLayer-__init__"><strong>__init__</strong></a>(self, l0, l1, activation='linear')</dt><dd><tt>Initialize&nbsp;a&nbsp;layer&nbsp;of&nbsp;the&nbsp;network<br>
+&nbsp;<br>
+###&nbsp;Inputs:<br>
+&nbsp;<br>
+&nbsp;-&nbsp;l0:&nbsp;an&nbsp;integer&nbsp;giving&nbsp;size&nbsp;of&nbsp;the&nbsp;input&nbsp;i.e.&nbsp;the&nbsp;size&nbsp;of&nbsp;previous&nbsp;layer<br>
+&nbsp;-&nbsp;l1:&nbsp;an&nbsp;integer&nbsp;giving&nbsp;size&nbsp;of&nbsp;the&nbsp;output&nbsp;i.e&nbsp;the&nbsp;size&nbsp;of&nbsp;layer<br>
+&nbsp;-&nbsp;activation:&nbsp;a&nbsp;string&nbsp;giving&nbsp;activation&nbsp;function&nbsp;of&nbsp;this&nbsp;layer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default&nbsp;value:'linear')</tt></dd></dl>
+
+<dl><dt><a name="PerceptronLayer-forward"><strong>forward</strong></a>(self, X)</dt><dd><tt>This&nbsp;function&nbsp;performs&nbsp;the&nbsp;Forward&nbsp;propogation&nbsp;of&nbsp;a&nbsp;layer</tt></dd></dl>
+
+<dl><dt><a name="PerceptronLayer-update_batch_gradient_descent"><strong>update_batch_gradient_descent</strong></a>(self, X, h_x, d_back, alpha=0.01)</dt><dd><tt>This&nbsp;function&nbsp;performs&nbsp;the&nbsp;weight&nbsp;update&nbsp;of&nbsp;a&nbsp;layer&nbsp;using&nbsp;the&nbsp;Gradient&nbsp;descent&nbsp;optimizer<br>
+&nbsp;<br>
+Inputs:<br>
+-&nbsp;X&nbsp;:&nbsp;The&nbsp;input&nbsp;to&nbsp;the&nbsp;layer<br>
+-&nbsp;h_x&nbsp;:&nbsp;The&nbsp;predicted&nbsp;output&nbsp;of&nbsp;the&nbsp;layer<br>
+-&nbsp;d_back&nbsp;:&nbsp;Gradients&nbsp;from&nbsp;front&nbsp;layers&nbsp;calculated&nbsp;using&nbsp;backpropogation<br>
+-&nbsp;alpha&nbsp;:&nbsp;The&nbsp;learning&nbsp;rate&nbsp;(Default&nbsp;:&nbsp;0.01)</tt></dd></dl>
+
+
+</td></tr></table></td></tr></table>
+</body></html>
